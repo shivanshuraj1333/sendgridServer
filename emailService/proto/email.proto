@@ -1,0 +1,55 @@
+/*
+Copyright 2022 Shivanshu Raj Shrivastava(shivanshu1333).
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+package src;
+
+option go_package="emailService/proto";
+
+// to get email id which we need to add to RabbitMQ
+message Email {
+  string id = 1;
+}
+
+message request {
+  Email emailId = 1;
+}
+
+message response {
+  string res = 1;
+}
+
+// service to add email id to RabbitMQ
+service EmailService {
+  rpc EmailService(request) returns (response);
+}
+
+// sender emailID and message body for send grid
+message sendgrid {
+  string emailID = 1;
+  string body = 2;
+}
+
+message sendgridRequest {
+  sendgrid emailMetadata = 1;
+}
+
+message sendGridResponse {
+  string res = 1;
+}
+
+service SendGridService {
+  rpc SendGridService(sendgridRequest) returns (sendGridResponse);
+}
