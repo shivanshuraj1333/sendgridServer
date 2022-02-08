@@ -1,8 +1,8 @@
 # Design:
 ![Blank diagram](https://user-images.githubusercontent.com/26167974/153089215-056528ea-1bf0-4d2e-846f-3a918d54596a.png)
 
-A addEmailServer is running which can serve many async clients sending user's email id, this server add these email ids to RabbitMQ. </br>
-Another server (sendEmailServer) is running which is serving clients asynchronously, it uses sender email id and email body from the client requests, it consumes the receiver email id from RabbitMQ and send an email using send grid API. The project uses gRPC in golang.
+An addEmailServer is running, serving many async clients sending users' email id. This server adds these email ids to RabbitMQ. 
+Another server (sendEmailServer) is running, which is serving clients asynchronously. It uses the sender email id and email body from the client requests; it consumes the receiver email id from RabbitMQ and sends an email using send grid API. The project uses gRPC in golang.
 
 
 # How to Run:
