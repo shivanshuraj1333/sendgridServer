@@ -1,3 +1,11 @@
+# Design:
+![Blank diagram](https://user-images.githubusercontent.com/26167974/153089215-056528ea-1bf0-4d2e-846f-3a918d54596a.png)
+
+A add email server is running which can serve many async clients sending users email id, this server add these email ids to RabbitMQ. </br>
+Another server with send email server is running which is serving clients asynchronously, it uses sender email id and email body from the client requests, get the reciver email id from RabbitMQ and send an email using send grid API.
+
+
+# How to Run:
 ## Step 1:
 ### Setup rabbitMQ locally (instructions for mac)
 ```
@@ -38,3 +46,25 @@ Run `source ./sendgrid.env && go run sendgridServer/sendgridServer.go`
 ## Step 7:
 ### Send async request from send email client to send emails to email ids consumed from RabbitMQ
 Run `source ./sendgrid.env && go run sendEmailClient/sendgridClient.go`
+
+## Project Structure
+```
+├── LICENSE
+├── Readme.md
+├── emailService
+│   ├── addEmailClient
+│   │   └── client.go
+│   ├── addEmailServer
+│   │   └── server.go
+│   ├── proto
+│   │   ├── email.pb.go
+│   │   ├── email.proto
+│   │   └── email_grpc.pb.go
+│   ├── sendEmailClient
+│   │   └── sendgridClient.go
+│   ├── sendEmailServer
+│   │   └── sendgridServer.go
+│   └── sendgrid.env
+├── go.mod
+└── go.sum
+```
