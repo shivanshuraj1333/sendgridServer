@@ -65,7 +65,7 @@ func main() {
 
 	// add emails here
 	for i := 0; i < concurrentClients; i++ {
-		emails := "abc" + strconv.Itoa(i) + ".com"
+		emails := "abc" + strconv.Itoa(i) + "@example.com"
 		wg.Add(1)
 		// add emails to rabbitMQ using rabbitMQ server
 		sendEmailID(c, emails, wg)
